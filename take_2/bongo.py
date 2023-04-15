@@ -2,8 +2,8 @@ import random
 
 # Define a Chunk class to hold each chunk's data
 class Chunk:
-    def __init__(self, num, loc, heat):
-        self.num = num
+    def __init__(self, id, loc, heat):
+        self.id = id
         self.loc = loc
         self.heat = heat
 
@@ -32,10 +32,10 @@ def generate_heat(chunks, curr_chunk):
 
 # Define a function to create the matrix of chunks
 def create_matrix():
-    # Create mother chunk with num 1, loc (0,0), and initial heat of 3
+    # Create mother chunk with id 1, loc (0,0), and initial heat of 3
     chunks = [Chunk(1, (0,0), 3)]
     for i in range(2, 26):
-        # Determine location of new chunk based on its num
+        # Determine location of new chunk based on its id
         x = (i - 2) % 5 - 2
         y = 2 - (i - 2) // 5
         loc = (x, y)
@@ -49,18 +49,18 @@ def create_matrix():
 # Define a function to display the matrix of chunks
 def display_matrix(chunks):
     # Create empty matrix
-    matrix = [[' ']*10 for _ in range(10)]
+    matrix = [[' ']*5 for _ in range(5)]
     for chunk in chunks:
         # Calculate matrix coordinates based on chunk location
         x = chunk.loc[0] + 2
         y = 2 - chunk.loc[1]
         # Format chunk data as string
-        chunk_str = f"num: {chunk.num}, loc: {chunk.loc}, heat: {chunk.heat}"
+        chunk_str = f"id: {chunk.id}, loc: {chunk.loc}, heat: {chunk.heat}"
         # Add chunk data to matrix
         matrix[y][x] = chunk_str
     # Print matrix
     for row in matrix:
-        print('| ' + ' | '.join(row) + ' |')
+        print('|' + ' |'.join(row) + '|')
 
 # Main function to run the program
 def main():
